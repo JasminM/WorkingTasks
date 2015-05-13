@@ -1,6 +1,6 @@
 <%- model_class = Employee -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1 align="center"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -22,7 +22,7 @@
         <td><%= employee.lastname %></td>
         <td><%= employee.firstname %></td>
         <td><%= employee.department_id %></td>
-        <td><%=l employee.created_at %></td>
+        <td><%= employee.created_at.strftime("%v") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_employee_path(employee), :class => 'btn btn-default btn-xs' %>

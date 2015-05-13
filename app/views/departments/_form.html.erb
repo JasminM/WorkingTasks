@@ -15,31 +15,49 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control' %>
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'form-control' %>
+        </div>
+        <%= error_span(@department[:name]) %>
     </div>
-    <%= error_span(@department[:name]) %>
+    <div class="col-md-3"></div>
   </div>
-  <div class="control-group">
-    <%= f.label :room, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :room, :class => 'form-control' %>
+
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :room, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :room, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@department[:room]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :head, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :head, :class => 'form-control' %>
+
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :head, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :head, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@department[:head]) %>
   </div>
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            departments_path, :class => 'btn btn-default' %>
-
+<br>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                departments_path, :class => 'btn btn-default' %>
+  </div>
+  <div class="col-md-3"></div>
+</div>
 <% end %>

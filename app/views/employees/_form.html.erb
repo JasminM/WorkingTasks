@@ -15,38 +15,62 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :position, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :position, :class => 'form-control' %>
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :position, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :position, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@employee[:position]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :lastname, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :lastname, :class => 'form-control' %>
+
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :lastname, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :lastname, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@employee[:lastname]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :firstname, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :firstname, :class => 'form-control' %>
+
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :firstname, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :firstname, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@employee[:firstname]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :department_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :department_id, :class => 'form-control' %>
+
+  <div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <%= f.label :department_id, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :department_id, :class => 'form-control' %>
+        </div>
     </div>
+    <div class="col-md-3"></div>
     <%= error_span(@employee[:department_id]) %>
   </div>
 
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            employees_path, :class => 'btn btn-default' %>
-
+    <br>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                employees_path, :class => 'btn btn-default' %>
+  </div>
+  <div class="col-md-3"></div>
+</div>
 <% end %>
