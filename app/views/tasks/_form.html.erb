@@ -1,5 +1,5 @@
 <%= form_for @task, :html => { :class => "form-horizontal task" } do |f| %>
-
+    <div style="padding-left: 5%;">
     <% if @task.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -14,67 +14,72 @@
       </div>
     </div>
   <% end %>
-
-  <div class="control-group">
+<div style=" padding-bottom: 2%;">
+  <div class="control-group" >
     <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'form-control' %>
+    <div class="controls" style="width: 25%;">
+      <%= f.text_field :title, :class => 'form-control', :maxlength => 50 %>
     </div>
     <%= error_span(@task[:title]) %>
   </div>
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :content, :class => 'form-control' %>
+    <div class="controls" style="width: 50%;">
+      <%= f.text_area :content, :class => 'form-control', :maxlength => 500, :rows => 10, :cols => 5 %>
     </div>
     <%= error_span(@task[:content]) %>
   </div>
   <div class="control-group">
     <%= f.label :priority, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :priority, :class => 'form-control' %>
+    <div class="controls" style="width: 5%;">
+      <%= f.number_field :priority, in: 1..10 ,:class => 'form-control' %>
     </div>
     <%= error_span(@task[:priority]) %>
   </div>
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :status, :class => 'form-control' %>
+      <%= f.select(:status, :class => 'form-control') do%>
+        <%= [['offen'], ['in Arbeit'], ['beendet']].each do |c|%>
+          <%= content_tag :option, c.first, value: c.last %>
+        <% end %>
+      <% end %>
     </div>
     <%= error_span(@task[:status]) %>
   </div>
   <div class="control-group">
     <%= f.label :begin, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :begin, :class => 'form-control' %>
+      <%= f.date_select :begin, :class => 'form-control' %>
     </div>
     <%= error_span(@task[:begin]) %>
   </div>
   <div class="control-group">
     <%= f.label :end, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :end, :class => 'form-control' %>
+      <%= f.date_select :end, :class => 'form-control' %>
     </div>
     <%= error_span(@task[:end]) %>
   </div>
   <div class="control-group">
     <%= f.label :customer_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :customer_id, :class => 'form-control' %>
+      <%= f.select :customer_id, Customer.all.pluck(:name), :class => 'form-control' %>
     </div>
     <%= error_span(@task[:customer_id]) %>
   </div>
   <div class="control-group">
     <%= f.label :subject_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :subject_area_id, :class => 'form-control' %>
+      <%= f.select :subject_area_id, SubjectArea.all.pluck(:name), :class => 'form-control' %>
     </div>
     <%= error_span(@task[:subject_area_id]) %>
   </div>
+</div>
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             tasks_path, :class => 'btn btn-default' %>
-
+</div>
 <% end %>

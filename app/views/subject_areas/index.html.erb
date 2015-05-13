@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Subject Areas</h1>
-
-<table>
+<%- model_class = SubjectArea -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Definition</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:definition) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @subject_areas.each do |subject_area| %>
       <tr>
+        <td><%= link_to subject_area.id, subject_area_path(subject_area) %></td>
         <td><%= subject_area.name %></td>
         <td><%= subject_area.definition %></td>
-        <td><%= link_to 'Show', subject_area %></td>
-        <td><%= link_to 'Edit', edit_subject_area_path(subject_area) %></td>
-        <td><%= link_to 'Destroy', subject_area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l subject_area.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_subject_area_path(subject_area), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      subject_area_path(subject_area),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Subject area', new_subject_area_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_subject_area_path,
+            :class => 'btn btn-primary' %>
