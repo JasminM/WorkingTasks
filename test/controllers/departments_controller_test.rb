@@ -46,4 +46,9 @@ class DepartmentsControllerTest < ActionController::TestCase
 
     assert_redirected_to departments_path
   end
+
+  test 'cant create an invalid department' do
+    post :create, id: @department, department: {name: nil, head: nil}
+    assert_response :ok
+  end
 end

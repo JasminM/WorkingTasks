@@ -46,4 +46,9 @@ class SubjectAreasControllerTest < ActionController::TestCase
 
     assert_redirected_to subject_areas_path
   end
+
+  test 'cant create an invalid subject_area' do
+    post :create, id: @subject_area, subject_area: {name: nil}
+    assert_response :ok
+  end
 end

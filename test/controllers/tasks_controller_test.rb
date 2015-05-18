@@ -46,4 +46,9 @@ class TasksControllerTest < ActionController::TestCase
 
     assert_redirected_to tasks_path
   end
+
+  test 'cant create an invalid task' do
+    post :create, id: @task, task: {title: nil}
+    assert_response :ok
+  end
 end

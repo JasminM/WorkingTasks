@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tasks/start'
+
   resources :customers
   resources :subject_areas
   resources :tasks

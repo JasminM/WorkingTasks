@@ -46,4 +46,9 @@ class CustomersControllerTest < ActionController::TestCase
 
     assert_redirected_to customers_path
   end
+
+  test 'cant create an invalid customer' do
+    post :create, id: @customer, customer: {name: nil}
+    assert_response :ok
+  end
 end
