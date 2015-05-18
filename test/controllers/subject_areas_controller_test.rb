@@ -18,7 +18,7 @@ class SubjectAreasControllerTest < ActionController::TestCase
 
   test "should create subject_area" do
     assert_difference('SubjectArea.count') do
-      post :create, subject_area: { definition: @subject_area.definition, name: @subject_area.name }
+      post :create, subject_area: { name: "#{@subject_area.name} #{SubjectArea.count}" }
     end
 
     assert_redirected_to subject_area_path(assigns(:subject_area))
@@ -35,8 +35,8 @@ class SubjectAreasControllerTest < ActionController::TestCase
   end
 
   test "should update subject_area" do
-    patch :update, id: @subject_area, subject_area: { definition: @subject_area.definition, name: @subject_area.name }
-    assert_redirected_to subject_area_path(assigns(:subject_area))
+    patch :update, id: @subject_area, subject_area: { name: @subject_area.name }
+    assert_response :ok
   end
 
   test "should destroy subject_area" do
