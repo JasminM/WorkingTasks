@@ -48,7 +48,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test 'cant create an invalid task' do
-    post :create, id: @task, task: {title: nil}
+    post :create, id: @task, task: {title: nil, department: nil, subject_area: nil}
     assert_response :ok
   end
 end

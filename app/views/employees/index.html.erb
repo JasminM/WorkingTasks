@@ -21,7 +21,7 @@
         <td><%= employee.position %></td>
         <td><%= employee.lastname %></td>
         <td><%= employee.firstname %></td>
-        <td><%= employee.department_id %></td>
+        <td><%= Department.find(employee.department_id).name %></td>
         <td><%= employee.created_at.strftime("%v") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

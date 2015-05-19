@@ -21,11 +21,19 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def try_get_emp_from_params
+    if params[:employee] != nil
+      @employees = Employee.find params[:employees]
+      @task.employees = @employees
+    else
+      @task.employees = []
+    end
+  end
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    try_get_emp_from_params
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -40,6 +48,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    try_get_emp_from_params
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }

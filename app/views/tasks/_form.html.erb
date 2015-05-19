@@ -93,10 +93,11 @@
   <div class="control-group row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <%= f.label :customer_id, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.select :customer_id, Customer.all.pluck(:name), :class => 'form-control' %>
-        </div>
+      <% if params[:customer_id] != nil %>
+          <%= f.collection_select :customer_id, Customer.all, :id, :name, {selected: params[:Customer_id]}, {class:"form-control"}  %>
+      <% else %>
+          <%= f.collection_select :customer_id, Customer.all, :id, :name, {prompt: 'Select a Customer'}, {class: "form-control"} %>
+      <% end %>
     </div>
     <div class="col-md-3"></div>
     <%= error_span(@task[:customer_id]) %>
@@ -104,16 +105,34 @@
 
   <div class="control-group row">
     <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <%= f.label :subject_area_id, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.select :subject_area_id, SubjectArea.all.pluck(:name), :class => 'form-control' %>
-        </div>
+    <% if params[:subject_area_id] != nil %>
+        <%= f.collection_select :subject_area_id, SubjectArea.all, :id, :name, {selected: params[:subject_area_id]}, {class:"form-control"}  %>
+    <% else %>
+        <%= f.collection_select :subject_area_id, SubjectArea.all, :id, :name, {prompt: 'Select a Subject Area'}, {class: "form-control"} %>
+    <% end %>
     </div>
     <div class="col-md-3"></div>
     <%= error_span(@task[:subject_area_id]) %>
   </div>
-
+<br>
+<div class="control-group row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <%= f.label :employees, :class => 'control-label' %>
+      <div class="controls">
+        <% Employee.all.each do |emp| %>
+            <%= f.label emp.firstname + ' ' + emp.lastname %>
+            <% if @task.employees.include?(emp) %>
+                <%= check_box_tag "employees[]", emp.id, {:checked => true} %>
+            <% else %>
+                <%= check_box_tag "employees[]", emp.id %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+    <%= error_span(@task[:employees]) %>
+</div>
 <br>
 <div class="row">
     <div class="col-md-3"></div>
@@ -124,4 +143,5 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
 <% end %>
