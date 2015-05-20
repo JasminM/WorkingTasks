@@ -3,26 +3,31 @@
   <h1 align="center"><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @task.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @task.content %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
-  <dd><%= @task.priority %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @task.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:begin) %>:</strong></dt>
-  <dd><%= @task.begin %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:end) %>:</strong></dt>
-  <dd><%= @task.end %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
-  <dd><%= @task.customer_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:subject_area_id) %>:</strong></dt>
-  <dd><%= @task.subject_area_id %></dd>
-</dl>
-
-<div class="row">
+<div class="row" >
+  <div class="col-md-4"></div>
+  <div class="col-md-5">
+        <dl class="dl-horizontal">
+          <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+          <dd><%= @task.title %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+          <dd><%= @task.content %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
+          <dd><%= @task.priority %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+          <dd><%= @task.status %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:begin) %>:</strong></dt>
+          <dd><%= @task.begin.strftime("%v")  %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:end) %>:</strong></dt>
+          <dd><%= @task.end.strftime("%v") %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
+          <dd><%=  Customer.find(@task.customer_id).name  %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:subject_area_id) %>:</strong></dt>
+          <dd><%= SubjectArea.find(@task.subject_area_id).name %></dd>
+        </dl>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row" align="center">
   <div class="col-md-3"></div>
   <div class="col-md-6">
 <%= link_to t('.back', :default => t("helpers.links.back")),

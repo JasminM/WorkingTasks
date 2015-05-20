@@ -2,34 +2,48 @@
 <div class="page-header">
   <h1 align="center"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-1" align="center">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_task_path,
+                :class => 'btn btn-primary active btn-block' %>
+  </div>
+  <div class="col-md-9"></div>
+</div>
+<br>
+<table class="table table-striped table-bordered table-hover" >
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:content) %></th>
-      <th>Prio</th>
+      <th><%= model_class.human_attribute_name(:priority) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:begin) %></th>
       <th><%= model_class.human_attribute_name(:end) %></th>
       <th><%= model_class.human_attribute_name(:customer_id) %></th>
-      <th><%= model_class.human_attribute_name(:subject_area_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% Task.includes(:customer).each do |task| %>
+    <% if task.end < Time.now && task.status != "beendet" %>
+      <tr class="danger">
+    <% elsif task.end > Time.now && task.status == "beendet"%>
+      <tr class="success">
+    <% else %>
       <tr>
-        <td><%= link_to task.id, task_path(task) %></td>
+    <% end %>
+        <td ><%= link_to task.id, task_path(task) %></td>
         <td><%= task.title %></td>
-        <td><%= task.content %></td>
         <td><%= task.priority %></td>
         <td><%= task.status %></td>
         <td><%= task.begin.strftime("%v") %></td>
         <td><%= task.end.strftime("%v") %></td>
         <td><%= Customer.find(task.customer_id).name %></td>
-        <td><%= SubjectArea.find(task.subject_area_id).name  %></td>
         <td>
+
+          <%= link_to t('.more Info'), task_path(task), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_task_path(task), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -43,9 +57,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_task_path,
-            :class => 'btn btn-primary' %>
 
 <div class="row">
   <div class="col-md-4"></div>
