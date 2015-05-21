@@ -1,10 +1,11 @@
 require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
-  test "the title must be uniqe" do
-    assert_raise ActiveRecord::RecordInvalid do
-      Task.create! title: tasks(:one).title
-    end
+
+  test "title_must be unique" do
+    Task.new(:title => "Test").save
+    task = Task.new(:title => "Test")
+    assert_not task.save, "Saved the test with the same title as another"
   end
 
   test "should not save task without title" do

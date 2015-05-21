@@ -36,7 +36,7 @@ class SubjectAreasControllerTest < ActionController::TestCase
 
   test "should update subject_area" do
     patch :update, id: @subject_area, subject_area: { name: @subject_area.name }
-    assert_response :ok
+    assert_redirected_to subject_area_path(assigns(:subject_area))
   end
 
   test "should destroy subject_area" do
@@ -49,6 +49,11 @@ class SubjectAreasControllerTest < ActionController::TestCase
 
   test 'cant create an invalid subject_area' do
     post :create, id: @subject_area, subject_area: {name: nil}
+    assert_response :ok
+  end
+
+  test 'cant update an invalid subject_area' do
+    post :update, id: @subject_area, subject_area: {name: nil}
     assert_response :ok
   end
 end

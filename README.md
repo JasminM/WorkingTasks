@@ -15,27 +15,27 @@ Es sollte möglich sein, Aufgaben anzulegen, die direkt zu Mitarbeitern, Kunden u
 * Task(title content priority status begin end customer subject_area)
 
 ###Beziehungen
-* Employee(n)   <belongs_to> (1) Department
-* Task(n)       <belongs_to> (1) Customer
-* Task(n)       <belongs_to> (1) Subject_area
-* Employee(n)   <has_and_belongs_to_many> (m)Tasks
+* Employee(n)   "<belongs_to>" (1) Department
+* Task(n)       "<belongs_to>" (1) Customer
+* Task(n)       "<belongs_to>" (1) Subject_area
+* Employee(n)   "<has_and_belongs_to_many>" (m)Tasks
 
 ### Validations
 * Customer:name--> validates_presence_of
 * Department :name, :head --> validates_presence_of
-* Employee:firstname, :lastname --> validates_presence_of
+* Employee:firstname, :lastname, :department --> validates_presence_of
 * Subject_area:name --> validates_presence_of & validates_uniqueness_of
-* Task:title --> validates_presence_of & validates_uniqueness_of
+* Task:title, :customer, :subject_area --> validates_presence_of & validates_uniqueness_of (title)
 
 ## Tests
 
-* 42 Tests, 70 Assertions,
+* 49 Tests, 81 Assertions,
 * ModelTests: 3
-* Integrationstests:
+* Integrationstests: 1
 
 ## Code Abdeckung
 
- Coverage: 96,96% laut simplecov
+ Coverage: 98,99% laut simplecov
 
 ## Commits
 

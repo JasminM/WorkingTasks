@@ -51,4 +51,9 @@ class CustomersControllerTest < ActionController::TestCase
     post :create, id: @customer, customer: {name: nil}
     assert_response :ok
   end
+
+  test 'cant update an invalid customer' do
+    post :update, id: @customer, customer: {name: nil}
+    assert_response :ok
+  end
 end

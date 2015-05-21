@@ -16,7 +16,8 @@ two:
 
 additional:
   id: 3
-  position: Additional
-  lastname: Additional
-  firstname: Additional
-  department_id: 1
+  position: MyString
+  lastname: MyString
+  firstname: MyString
+  department_id: 2
+

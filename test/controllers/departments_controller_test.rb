@@ -51,4 +51,9 @@ class DepartmentsControllerTest < ActionController::TestCase
     post :create, id: @department, department: {name: nil, head: nil}
     assert_response :ok
   end
+
+  test 'cant update an invalid department' do
+    post :update, id: @department, department: {name: nil, head: nil}
+    assert_response :ok
+  end
 end

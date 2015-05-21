@@ -10,10 +10,11 @@ one:
   end: 2015-05-13 08:35:41
   customer_id: 1
   subject_area_id: 1
+  employees: one
 
 two:
   id: 2
-  title: MyString
+  title: MyString2
   content: MyText
   priority: 1
   status: MyString
@@ -21,3 +22,5 @@ two:
   end: 2015-05-13 08:35:41
   customer_id: 2
   subject_area_id: 2
+  employees: one
+

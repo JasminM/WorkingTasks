@@ -47,5 +47,13 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to employees_path
   end
 
+  test 'cant create an invalid employee' do
+    post :create, id: @employee, employee: {firstname: nil, lastname: nil, department: nil}
+    assert_response :ok
+  end
 
+  test 'cant update an invalid employee' do
+    post :update, id: @employee, employee: {firstname: nil, lastname: nil, department: nil}
+    assert_response :ok
+  end
 end

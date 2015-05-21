@@ -21,14 +21,7 @@ class TasksController < ApplicationController
   def edit
   end
 
-  def try_get_emp_from_params
-    if params[:employee] != nil
-      @employees = Employee.find params[:employees]
-      @task.employees = @employees
-    else
-      @task.employees = []
-    end
-  end
+
   # POST /tasks
   # POST /tasks.json
   def create
@@ -70,6 +63,15 @@ class TasksController < ApplicationController
     end
   end
 
+
+  def try_get_emp_from_params
+    if params[:employees] != nil
+      @employees = Employee.find params[:employees]
+      @task.employees = @employees
+    else
+      @task.employees = []
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -78,6 +80,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :content, :priority, :status, :begin, :end, :customer_id, :subject_area_id)
+      params.require(:task).permit(:title, :content, :priority, :status, :begin, :end, :customer_id, :subject_area_id, employee_ids:[])
     end
 end
