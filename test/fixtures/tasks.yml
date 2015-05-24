@@ -24,3 +24,14 @@ two:
   subject_area_id: 2
   employees: one
 
+three:
+  id: 3
+  title: MyString3
+  content: MyText
+  priority: 1
+  status: MyString
+  begin: 2015-05-13 08:35:41
+  end: 2015-05-13 08:35:41
+  customer_id: 2
+  subject_area_id: 2
+  employees: one

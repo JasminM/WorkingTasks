@@ -17,15 +17,12 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   test "should create task" do
      assert_difference('Task.count') do
-       post :create, task: {task_id: @task.id, title: @task.title, subject_area_id: @task.subject_area_id, customer_id: @task.customer_id }
-       assert_response :ok
-     #   post :create, task: { title: "#{@task.title} #{Task.count}" }
+       post :create, task: {task_id: @task.id, title: @task.title + "sdas", subject_area_id: @task.subject_area_id, customer_id: @task.customer_id }
+       assert_redirected_to task_path(assigns(:task))
      end
   end
-
 
   test "should show task" do
     get :show, id: @task
